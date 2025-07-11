@@ -779,7 +779,7 @@ func (b *rawBridge) addBackingID(n *Inode, f FileHandle, out *fuse.OpenOut) {
 		return
 	}
 
-	if n.backingID == 0 {
+	if n.backingID == 0 || b.options.RegisterBackingFdForEveryFuseOpen {
 		fd, ok := pth.PassthroughFd()
 		if !ok {
 			return

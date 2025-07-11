@@ -711,6 +711,11 @@ type Options struct {
 	// MountOptions contain the options for mounting the fuse server
 	fuse.MountOptions
 
+	// ALinux's implementation is not equivalent to the 6.9 linux kernel's.
+	// It requires doing ioctl FUSE_DEV_IOC_BACKING_OPEN after every FUSE_OPEN.
+	// See fuse/passthrough_linux.go for more information
+	RegisterBackingFdForEveryFuseOpen bool
+
 	// If set to nonnil, this defines the overall entry timeout
 	// for the file system. See fuse.EntryOut for more information.
 	EntryTimeout *time.Duration
