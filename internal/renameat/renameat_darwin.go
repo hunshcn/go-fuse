@@ -5,11 +5,7 @@ import (
 	"unsafe"
 )
 
-const (
-	SYS_RENAMEATX_NP = 488
-	RENAME_SWAP      = 0x2
-	RENAME_EXCHANGE  = RENAME_SWAP
-)
+const SYS_RENAMEATX_NP = 488
 
 func renameat(olddirfd int, oldpath string, newdirfd int, newpath string, flags uint) error {
 	oldpathCString, err := syscall.BytePtrFromString(oldpath)
